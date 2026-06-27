@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+set: [errexit, nounset, pipefail]
+
+dotenv:
+  - .env
+
+vars:
+  DB_STRING: "postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=$DB_SSLMODE"
+
+tasks:
+  build:
+    desc: Build app
+    cmds:
+      - devbox run go build -o bin/app ./cmd/api
+    silent: true
+  run:
+    cmds:
+      - devbox run go run ./cmd/api
+  dev:
+    cmds:
+      - devbox run go run ./cmd/api
+  lint:
+    cmds:
+      - devbox run golangci-lint run ./...
+  migrate-up:
+    cmds:
+      - migrate -path db/migrations -database "{{.DB_STRING}" up
+  migrate-down:
+    cmds:
+      - migrate -path db/migrations -database "{{.DB_STRING}" up
