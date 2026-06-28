@@ -31,3 +31,10 @@ tasks:
   migrate-down:
     cmds:
       - migrate -path db/migrations -database "{{.DB_STRING}" up
+
+  container-up:
+    cmds :
+      - docker compose -f docker/docker-compose.yml  up -d
+  container-down:
+    cmds:
+      - docker compose -f docker/docker-compose.yml  down
