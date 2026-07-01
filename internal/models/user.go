@@ -19,7 +19,7 @@ type User struct {
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 
-	//Relatiosnhip
+	// Relatiosnhip
 	RefreshTokens []RefreshToken
 	Orders        []Order
 	Cart          Cart
