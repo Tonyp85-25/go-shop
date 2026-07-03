@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "commitlint@latest": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#commitlint",
+      "source": "devbox-search",
+      "version": "21.0.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fqkzk8mqsw8dk2kvjgh4z3zxyfzffz2s-commitlint-21.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fqkzk8mqsw8dk2kvjgh4z3zxyfzffz2s-commitlint-21.0.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/13yq63zp071ms2cdlysswazs0hd6w94z-commitlint-21.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/13yq63zp071ms2cdlysswazs0hd6w94z-commitlint-21.0.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2yp4iacn4gbm3mplmhcsdmmfrlgwx98a-commitlint-21.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2yp4iacn4gbm3mplmhcsdmmfrlgwx98a-commitlint-21.0.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6rdrdvnca189glvr2l71sdcsidn5gph6-commitlint-21.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6rdrdvnca189glvr2l71sdcsidn5gph6-commitlint-21.0.0"
+        }
+      }
+    },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2026-06-01T17:55:45Z",
       "resolved": "github:NixOS/nixpkgs/4df1b885d76a54e1aa1a318f8d16fd6005b6401f?lastModified=1780336545&narHash=sha256-vhVhuXzFrIOfcssC%2F9hDHx7MHzDKjF3keHuREOQqQiQ%3D"
@@ -194,6 +242,54 @@
             }
           ],
           "store_path": "/nix/store/8nd8gnnyll5y584wf9lapk847w53ma03-gotools-0.44.0"
+        }
+      }
+    },
+    "lefthook@latest": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#lefthook",
+      "source": "devbox-search",
+      "version": "2.1.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/j9jl8zx6r42hyf2jsvriifsnav24rzga-lefthook-2.1.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/j9jl8zx6r42hyf2jsvriifsnav24rzga-lefthook-2.1.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7d0d3n6g1j0l54zqiafgvjzfbzrhg639-lefthook-2.1.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7d0d3n6g1j0l54zqiafgvjzfbzrhg639-lefthook-2.1.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/m5jbb5k4qk5ajajrbwksfzp4qrv74l89-lefthook-2.1.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/m5jbb5k4qk5ajajrbwksfzp4qrv74l89-lefthook-2.1.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/cr6mlf1cd2hi3zq4mri7dabcsd9711sx-lefthook-2.1.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/cr6mlf1cd2hi3zq4mri7dabcsd9711sx-lefthook-2.1.5"
         }
       }
     }

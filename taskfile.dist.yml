@@ -11,10 +11,16 @@ vars:
   DB_STRING: "postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=$DB_SSLMODE"
 
 tasks:
+  setup:
+    desc: Setup project
+    deps:
+      - gen-local
+      - devbox install
   gen-local:
     desc: Generate local task file (not commited)
     cmds:
       - cp ./taskfile.dist.yml ./Taskfile.yml
+      - cp .env-example .env
   build:
     desc: Build app
     cmds:

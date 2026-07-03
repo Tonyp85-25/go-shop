@@ -1,0 +1,4 @@
+extends:
+  - "@commitlint/config-conventional"
+
+type-enum: ["ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test", "wip", "task"]
