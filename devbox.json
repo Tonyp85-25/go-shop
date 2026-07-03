@@ -3,7 +3,8 @@
   "packages": [
     "go@1.26",
     "golangci-lint@latest",
-    "go-migrate@latest"
+    "go-migrate@latest",
+    "gotools@latest"
   ],
   "env": {
     "GOPATH": "$HOME/go",
@@ -13,7 +14,6 @@
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null"
     ],
-    "scripts": {
-    }
+    "scripts": {}
   }
 }

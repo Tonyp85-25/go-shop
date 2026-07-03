@@ -11,6 +11,10 @@ vars:
   DB_STRING: "postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=$DB_SSLMODE"
 
 tasks:
+  gen-local:
+    desc: Generate local task file (not commited)
+    cmds:
+      - cp ./taskfile.dist.yml ./Taskfile.yml
   build:
     desc: Build app
     cmds:
@@ -23,8 +27,14 @@ tasks:
     cmds:
       - devbox run go run ./cmd/api
   lint:
+    deps:
+      - format
     cmds:
       - devbox run golangci-lint run ./...
+  format:
+    cmds:
+      -  devbox run gofmt -s -w .
+      -  devbox run goimports -w .
   migrate-up:
     cmds:
       - migrate -path db/migrations -database "{{.DB_STRING}" up

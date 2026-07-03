@@ -148,6 +148,54 @@
           "store_path": "/nix/store/x3ism4ihdsansi2y1ldhs78244pxv22w-golangci-lint-2.12.2"
         }
       }
+    },
+    "gotools@latest": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#gotools",
+      "source": "devbox-search",
+      "version": "0.44.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fh2ikzz3iwlm78r9d12chh7zml4szr1x-gotools-0.44.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fh2ikzz3iwlm78r9d12chh7zml4szr1x-gotools-0.44.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wpfrss2sa04yabkc598qprhpja37jqaz-gotools-0.44.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/wpfrss2sa04yabkc598qprhpja37jqaz-gotools-0.44.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c0gg0pzxcbscxlr07n0idnrkc2mzx7i3-gotools-0.44.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/c0gg0pzxcbscxlr07n0idnrkc2mzx7i3-gotools-0.44.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8nd8gnnyll5y584wf9lapk847w53ma03-gotools-0.44.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8nd8gnnyll5y584wf9lapk847w53ma03-gotools-0.44.0"
+        }
+      }
     }
   }
 }
