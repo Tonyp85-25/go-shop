@@ -1,9 +1,9 @@
 pre-commit:
-  jobs:
-    - name: Lint reminder
-    - run: echo "Do not forget to lint the code before committing"
+  commands:
+    "Lint reminder":
+      run: echo "Do not forget to lint the code before committing && exit 0"
 
 commit-msg:
-  jobs:
-    - Check commit formatting
-    - run: commitlint --from HEAD~1 --to HEAD --verbose
+  commands:
+    "Check commit formatting":
+      run: devbox run commitlint --from HEAD~1 --to HEAD

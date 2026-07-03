@@ -15,7 +15,8 @@ tasks:
     desc: Setup project
     deps:
       - gen-local
-      - devbox install
+      - devbox install # install dev dependency
+      - devbox run lefthook install
   gen-local:
     desc: Generate local task file (not commited)
     cmds:
