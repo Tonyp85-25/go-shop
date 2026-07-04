@@ -6,7 +6,8 @@
     "go-migrate@latest",
     "gotools@latest",
     "lefthook@latest",
-    "commitlint@latest"
+    "commitlint@latest",
+    "yamllint@latest"
   ],
   "env": {
     "GOPATH": "$HOME/go",

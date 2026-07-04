@@ -292,6 +292,70 @@
           "store_path": "/nix/store/cr6mlf1cd2hi3zq4mri7dabcsd9711sx-lefthook-2.1.5"
         }
       }
+    },
+    "yamllint@latest": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#yamllint",
+      "source": "devbox-search",
+      "version": "1.37.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7n3n0i63y8rlapg3lkm2yn3mikks5s05-python3.13-yamllint-1.37.1",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/8fm1gafz0i7l04l9gsg9479p0dqwa2fk-python3.13-yamllint-1.37.1-dist"
+            }
+          ],
+          "store_path": "/nix/store/7n3n0i63y8rlapg3lkm2yn3mikks5s05-python3.13-yamllint-1.37.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fq895h2hsh25fjyiq56zzilll2dbr88g-python3.13-yamllint-1.37.1",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/nvc7bs1qiw7b336wyj0rv0c299yg6390-python3.13-yamllint-1.37.1-dist"
+            }
+          ],
+          "store_path": "/nix/store/fq895h2hsh25fjyiq56zzilll2dbr88g-python3.13-yamllint-1.37.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bif9hvk42ynby7sdw88lax0j51kzlr2n-python3.13-yamllint-1.37.1",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/qa1dq7xly19afgn165nf6572b3q61w1s-python3.13-yamllint-1.37.1-dist"
+            }
+          ],
+          "store_path": "/nix/store/bif9hvk42ynby7sdw88lax0j51kzlr2n-python3.13-yamllint-1.37.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rqh0f80yadayvb2wx5jbrwsn3j1ns4fd-python3.13-yamllint-1.37.1",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/jcy4afhhfvygjqr41cs0i4647s05n9f2-python3.13-yamllint-1.37.1-dist"
+            }
+          ],
+          "store_path": "/nix/store/rqh0f80yadayvb2wx5jbrwsn3j1ns4fd-python3.13-yamllint-1.37.1"
+        }
+      }
     }
   }
 }

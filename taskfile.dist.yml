@@ -15,8 +15,8 @@ tasks:
     desc: Setup project
     deps:
       - gen-local
-      - devbox install # install dev dependency
-      - devbox run lefthook install
+      - devbox install  #install dev dependency
+      - devbox run lefthook install # install git hooks
   gen-local:
     desc: Generate local task file (not commited)
     cmds:
@@ -38,10 +38,11 @@ tasks:
       - format
     cmds:
       - devbox run golangci-lint run ./...
+      - devbox run yamllint .
   format:
     cmds:
-      -  devbox run gofmt -s -w .
-      -  devbox run goimports -w .
+      - devbox run gofmt -s -w .
+      - devbox run goimports -w .
   migrate-up:
     cmds:
       - migrate -path db/migrations -database "{{.DB_STRING}" up
@@ -50,7 +51,7 @@ tasks:
       - migrate -path db/migrations -database "{{.DB_STRING}" up
 
   container-up:
-    cmds :
+    cmds:
       - docker compose -f docker/docker-compose.yml  up -d
   container-down:
     cmds:

@@ -1,5 +1,6 @@
 # This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+# For more information see:
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
 name: Go
 
@@ -15,6 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
+
+    - name: Install yamllint
+      run: pip install yamllint
+
+    - name: Lint YAML files
+      run: yamllint .
 
     - name: Set up Go
       uses: actions/setup-go@v6.5.0
