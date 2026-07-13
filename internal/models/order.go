@@ -12,7 +12,7 @@ type Order struct {
 	Status      OrderStatus `json:"status" gorm:"default:pending"`
 	TotalAmount float64     `json:"total_amount" gorm:"not null"`
 	// Relationships
-	User       User        `json:"user"`
+	User       Customer    `json:"user"`
 	OrderItems []OrderItem `json:"order_items"`
 }
 

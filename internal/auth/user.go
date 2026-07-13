@@ -1,25 +1,20 @@
-package models
+package auth
 
 import (
 	"time"
 
+	"example.com/go-shop/internal/models"
 	"gorm.io/gorm"
 )
 
 type User struct {
-	AppModel
-	Email     string `gorm:"uniqueIndex;not null"`
-	Password  string `gorm:"not null"`
-	FirstName string `gorm:";not null"`
-	LastName  string `gorm:";not null"`
-	Phone     string
-	IsActive  bool     `gorm:"default:true"`
-	Role      UserRole `gorm:"default:customer"`
+	models.AppModel
+	Email    string   `gorm:"uniqueIndex;not null"`
+	IsActive bool     `gorm:"default:true"`
+	Role     UserRole `gorm:"default:customer"`
 
 	// Relatiosnhip
 	RefreshTokens []RefreshToken
-	Orders        []Order
-	Cart          Cart
 }
 
 type UserRole string
