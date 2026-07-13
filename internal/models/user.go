@@ -7,7 +7,7 @@ import (
 )
 
 type User struct {
-	ID        uint   `gorm:"primary_key"`
+	AppModel
 	Email     string `gorm:"uniqueIndex;not null"`
 	Password  string `gorm:"not null"`
 	FirstName string `gorm:";not null"`
@@ -15,9 +15,6 @@ type User struct {
 	Phone     string
 	IsActive  bool     `gorm:"default:true"`
 	Role      UserRole `gorm:"default:customer"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt gorm.DeletedAt `gorm:"index"`
 
 	// Relatiosnhip
 	RefreshTokens []RefreshToken

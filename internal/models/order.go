@@ -7,14 +7,10 @@ import (
 )
 
 type Order struct {
-	ID          uint           `json:"id" gorm:"primaryKey"`
-	UserID      uint           `json:"user_id" gorm:"not null"`
-	Status      OrderStatus    `json:"status" gorm:"default:pending"`
-	TotalAmount float64        `json:"total_amount" gorm:"not null"`
-	CreatedAt   time.Time      `json:"created_at"`
-	UpdatedAt   time.Time      `json:"updated_at"`
-	DeletedAt   gorm.DeletedAt `json:"-" gorm:"index"`
-
+	AppModel
+	UserID      uint        `json:"user_id" gorm:"not null"`
+	Status      OrderStatus `json:"status" gorm:"default:pending"`
+	TotalAmount float64     `json:"total_amount" gorm:"not null"`
 	// Relationships
 	User       User        `json:"user"`
 	OrderItems []OrderItem `json:"order_items"`
@@ -45,24 +41,18 @@ type OrderItem struct {
 }
 
 type Cart struct {
-	ID        uint           `json:"id" gorm:"primaryKey"`
-	UserID    uint           `json:"user_id" gorm:"uniqueIndex;not null"`
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
+	AppModel
+	UserID uint `json:"user_id" gorm:"uniqueIndex;not null"`
 
 	// Relationships
 	CartItems []CartItem `json:"cart_items"`
 }
 
 type CartItem struct {
-	ID        uint           `json:"id" gorm:"primaryKey"`
-	CartID    uint           `json:"cart_id" gorm:"not null"`
-	ProductID uint           `json:"product_id" gorm:"not null"`
-	Quantity  int            `json:"quantity" gorm:"not null"`
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
+	AppModel
+	CartID    uint `json:"cart_id" gorm:"not null"`
+	ProductID uint `json:"product_id" gorm:"not null"`
+	Quantity  int  `json:"quantity" gorm:"not null"`
 
 	// Relationships
 	Cart    Cart    `json:"-"`
