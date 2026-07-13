@@ -9,7 +9,7 @@ import (
 
 type AppModel struct {
 	ID        uint      `gorm:"primary_key"`
-	publicID  uuid.UUID `gorm:"type:uuid;"`
+	PublicID  uuid.UUID `gorm:"type:uuid;"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
