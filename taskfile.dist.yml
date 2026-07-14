@@ -56,3 +56,11 @@ tasks:
   container-down:
     cmds:
       - docker compose -f docker/docker-compose.yml  down
+
+  # generation commands
+  add-feature:
+    desc: Add a new feature template (write your feature name after "-- ")
+
+    cmds:
+     - mkdir -p {{.CLI_ARGS}}
+     - touch {{.CLI_ARGS}}/usecase.go {{.CLI_ARGS}}/request.go {{.CLI_ARGS}}/response.go
