@@ -3,11 +3,12 @@ package models
 import (
 	"time"
 
+	"example.com/go-shop/internal/features/common"
 	"gorm.io/gorm"
 )
 
 type Category struct {
-	AppModel
+	common.AppModel
 	Name        string `json:"name" gorm:"not null"`
 	Description string `json:"description"`
 	IsActive    bool   `json:"is_active" gorm:"default:true"`
@@ -17,7 +18,7 @@ type Category struct {
 }
 
 type Product struct {
-	AppModel
+	common.AppModel
 	CategoryID  uint    `json:"category_id" gorm:"not null"`
 	Name        string  `json:"name" gorm:"not null"`
 	Description string  `json:"description"`

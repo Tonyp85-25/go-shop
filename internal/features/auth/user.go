@@ -3,12 +3,12 @@ package auth
 import (
 	"time"
 
-	"example.com/go-shop/internal/models"
+	"example.com/go-shop/internal/features/common"
 	"gorm.io/gorm"
 )
 
 type User struct {
-	models.AppModel
+	common.AppModel
 	Email    string   `gorm:"uniqueIndex;not null"`
 	IsActive bool     `gorm:"default:true"`
 	Role     UserRole `gorm:"default:customer"`

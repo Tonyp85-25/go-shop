@@ -3,11 +3,12 @@ package models
 import (
 	"time"
 
+	"example.com/go-shop/internal/features/common"
 	"gorm.io/gorm"
 )
 
 type Order struct {
-	AppModel
+	common.AppModel
 	UserID      uint        `json:"user_id" gorm:"not null"`
 	Status      OrderStatus `json:"status" gorm:"default:pending"`
 	TotalAmount float64     `json:"total_amount" gorm:"not null"`
@@ -41,7 +42,7 @@ type OrderItem struct {
 }
 
 type Cart struct {
-	AppModel
+	common.AppModel
 	UserID uint `json:"user_id" gorm:"uniqueIndex;not null"`
 
 	// Relationships
@@ -49,7 +50,7 @@ type Cart struct {
 }
 
 type CartItem struct {
-	AppModel
+	common.AppModel
 	CartID    uint `json:"cart_id" gorm:"not null"`
 	ProductID uint `json:"product_id" gorm:"not null"`
 	Quantity  int  `json:"quantity" gorm:"not null"`

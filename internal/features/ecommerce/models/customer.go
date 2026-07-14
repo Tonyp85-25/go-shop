@@ -1,7 +1,11 @@
 package models
 
+import (
+	"example.com/go-shop/internal/features/common"
+)
+
 type Customer struct {
-	AppModel
+	common.AppModel
 	Email     string `gorm:"uniqueIndex;not null"`
 	FirstName string `gorm:";not null"`
 	LastName  string `gorm:";not null"`
