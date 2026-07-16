@@ -1,0 +1,12 @@
+@port={{$dotenv SERVER_PORT}}
+@base=http://localhost:{{port}}/api/v1
+
+POST {{base}}/auth/register
+Content-Type: application/json
+ 
+{
+  "email": "blabla@bla.com",
+  "password":"secret_pass",
+  "first_name":"test",
+  "last_name":"totest"
+}

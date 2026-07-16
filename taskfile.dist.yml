@@ -56,25 +56,28 @@ tasks:
     cmds:
       - "{{.PRE_BIN}} go test -v ./internal/tests/**"
 
-  migrate-gen:
+  migrate:gen:
     desc: |
       create migration set with name passed as param
       task migrate-gen -- <name>
     cmds:
-      - "{{.PRE_BIN}} migrate create -ext sql -dir db/migrations {{.CLI_ARGS}} "
+      - "{{.PRE_BIN}} migrate create -ext sql -dir db/migrations {{.CLI_ARGS}}"
 
-  migrate-up:
+  migrate:up:
     cmds:
-      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} up"
+      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} up {{.CLI_ARGS}}"
 
-  migrate-down:
+  migrate:down:
     cmds:
-      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} up"
+      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} down {{.CLI_ARGS}}"
+  migrate:version:set:
+    cmds:
+      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} force {{.CLI_ARGS}}"
 
-  container-up:
+  container:up:
     cmds:
       - docker compose -f docker/docker-compose.yml  up -d
-  container-down:
+  container:down:
     cmds:
       - docker compose -f docker/docker-compose.yml  down
 
