@@ -12,6 +12,6 @@ type Customer struct {
 	Phone     string
 
 	// Relatiosnhip
-	Orders []Order
-	Cart   Cart
+	// Orders []Order
+	// Cart   Cart
 }
