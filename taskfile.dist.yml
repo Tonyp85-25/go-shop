@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
-
+# important! yaml does not tolerate "{" after hyphen,
+# so you are forced to wrap your text beginning with a variable with ""
 version: '3'
 
 set: [errexit, nounset, pipefail]
@@ -9,6 +10,7 @@ dotenv:
 
 vars:
   DB_STRING: "postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=$DB_SSLMODE"
+  PRE_BIN: "devbox run"
 
 tasks:
   setup:
@@ -16,39 +18,58 @@ tasks:
     deps:
       - gen-local
       - devbox install  #install dev dependency
-      - devbox run lefthook install # install git hooks
+      - "{{.PRE_BIN} lefthook install" # install git hooks
+
   gen-local:
     desc: Generate local task file (not commited)
     cmds:
       - cp ./taskfile.dist.yml ./Taskfile.yml
       - cp .env-example .env
+
   build:
     desc: Build app
     cmds:
-      - devbox run go build -o bin/app ./cmd/api
+      - "{{.PRE_BIN}} go build -o bin/app ./cmd/api"
     silent: true
+
   run:
     cmds:
-      - devbox run go run ./cmd/api
+      - "{{.PRE_BIN}} go run ./cmd/api"
+
   dev:
     cmds:
-      - devbox run go run ./cmd/api
+      - "{{.PRE_BIN}} go run ./cmd/api"
+
   lint:
     deps:
       - format
     cmds:
-      - devbox run golangci-lint run ./...
-      - devbox run yamllint .
+      - "{{.PRE_BIN}} golangci-lint run ./..."
+      - "{{.PRE_BIN}} yamllint ."
+
   format:
     cmds:
-      - devbox run gofmt -s -w .
-      - devbox run goimports -w .
+      - "{{.PRE_BIN}} gofmt -s -w ."
+      - "{{.PRE_BIN}} goimports -w ."
+
+  test:
+    cmds:
+      - "{{.PRE_BIN}} go test -v ./internal/tests/**"
+
+  migrate-gen:
+    desc: |
+      create migration set with name passed as param
+      task migrate-gen -- <name>
+    cmds:
+      - "{{.PRE_BIN}} migrate create -ext sql -dir db/migrations {{.CLI_ARGS}} "
+
   migrate-up:
     cmds:
-      - migrate -path db/migrations -database "{{.DB_STRING}" up
+      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} up"
+
   migrate-down:
     cmds:
-      - migrate -path db/migrations -database "{{.DB_STRING}" up
+      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} up"
 
   container-up:
     cmds:
@@ -60,7 +81,10 @@ tasks:
   # generation commands
   add-feature:
     desc: Add a new feature template (write your feature name after "-- ")
-
+    env:
+      FEATURE_PATH: "${pwd}/internal/featuress/{{.CLI_ARGS}}"
     cmds:
-     - mkdir -p {{.CLI_ARGS}}
-     - touch {{.CLI_ARGS}}/usecase.go {{.CLI_ARGS}}/request.go {{.CLI_ARGS}}/response.go
+      - mkdir -p $FEATURE_PATH
+      - |
+       touch $FEATURE_PATH/usecase.go $FEATURE_PATH/request.go
+       $FEATURE_PATH/response.go $FEATURE_PATH/handler.go

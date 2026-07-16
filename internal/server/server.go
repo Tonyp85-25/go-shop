@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"example.com/go-shop/internal/config"
+	"example.com/go-shop/internal/features/auth/register"
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
 	"gorm.io/gorm"
@@ -49,6 +50,13 @@ func (s *Server) SetupRoutes() *gin.Engine {
 	router.Use(s.corsMiddleware())
 
 	router.GET("health", s.healthCheck)
+	api := router.Group("/api/v1")
+	{
+		auth := api.Group("/auth")
+
+		auth.POST("/register", register.Handler(s.db))
+
+	}
 
 	return router
 

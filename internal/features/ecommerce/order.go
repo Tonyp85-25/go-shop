@@ -1,4 +1,4 @@
-package models
+package ecommerce
 
 import (
 	"time"
