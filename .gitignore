@@ -51,3 +51,5 @@ uploads/
 
 # taskfile
 Taskfile.yml
+
+__debug*

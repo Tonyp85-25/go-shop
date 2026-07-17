@@ -1,7 +1,7 @@
 @port={{$dotenv SERVER_PORT}}
 @base=http://localhost:{{port}}/api/v1
 
-POST {{base}}/auth/register
+POST {{base}}/register
 Content-Type: application/json
  
 {

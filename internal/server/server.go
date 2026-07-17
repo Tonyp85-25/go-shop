@@ -51,12 +51,8 @@ func (s *Server) SetupRoutes() *gin.Engine {
 
 	router.GET("health", s.healthCheck)
 	api := router.Group("/api/v1")
-	{
-		auth := api.Group("/auth")
 
-		auth.POST("/register", register.Handler(s.db))
-
-	}
+	api.POST("/register", register.Handler(s.db))
 
 	return router
 

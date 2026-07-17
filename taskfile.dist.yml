@@ -54,7 +54,7 @@ tasks:
 
   test:
     cmds:
-      - "{{.PRE_BIN}} go test -v ./internal/tests/**"
+      - "export DOCKER_HOST=unix:///$DOCKER_PATH/docker.sock && {{.PRE_BIN}} go test -v ./internal/tests/..."
 
   migrate:gen:
     desc: |
