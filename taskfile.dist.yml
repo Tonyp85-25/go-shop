@@ -52,9 +52,15 @@ tasks:
       - "{{.PRE_BIN}} gofmt -s -w ."
       - "{{.PRE_BIN}} goimports -w ."
 
-  test:
+  test:all:
     cmds:
       - "export DOCKER_HOST=unix:///$DOCKER_PATH/docker.sock && {{.PRE_BIN}} go test -v ./internal/tests/..."
+  test:integration:
+    cmds:
+      - "export DOCKER_HOST=unix:///$DOCKER_PATH/docker.sock && {{.PRE_BIN}} go test -v ./internal/tests/integration/..."
+  test:unit:
+    cmds:
+      - "{{.PRE_BIN}} go test -v ./internal/tests/unit/..."
 
   migrate:gen:
     desc: |

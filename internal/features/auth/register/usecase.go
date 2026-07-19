@@ -1,10 +1,9 @@
 package register
 
 import (
-	"errors"
-
 	"example.com/go-shop/internal/features/auth"
 	"example.com/go-shop/internal/features/common"
+
 	"example.com/go-shop/internal/features/ecommerce"
 )
 
@@ -26,7 +25,7 @@ func (uc *UseCase) Handle(req *Request) (*Response, error) {
 
 	if _, err := uc.userRepo.GetByEmail(req.Email); err == nil {
 
-		return nil, errors.New("email already in use")
+		return nil, common.ErrUserAlreadyExists
 	}
 
 	hashedPassword, err := auth.HashPassword(req.Password)
@@ -47,9 +46,8 @@ func (uc *UseCase) Handle(req *Request) (*Response, error) {
 		return nil, err
 	}
 
-	// user fields are filled by orm
 	if _, err := uc.userRepo.Create(&user); err != nil {
-		// uc.db.Create(&user).Error{
+
 		return nil, err
 	}
 
@@ -62,7 +60,7 @@ func (uc *UseCase) Handle(req *Request) (*Response, error) {
 	}
 	if _, err := uc.customerRepo.GetByEmail(req.Email); err == nil {
 
-		return nil, errors.New("email already in use")
+		return nil, common.ErrUserAlreadyExists
 	}
 
 	if _, err := uc.customerRepo.Create(&customer); err != nil {
