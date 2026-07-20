@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"example.com/go-shop/internal/config"
+	"example.com/go-shop/internal/features/auth/login"
 	"example.com/go-shop/internal/features/auth/register"
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
@@ -53,6 +54,7 @@ func (s *Server) SetupRoutes() *gin.Engine {
 	api := router.Group("/api/v1")
 
 	api.POST("/register", register.Handler(s.db))
+	api.POST("/login", login.Handler(s.db, &s.config.JWTConfig))
 
 	return router
 
