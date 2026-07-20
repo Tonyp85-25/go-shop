@@ -11,7 +11,7 @@ dotenv:
 vars:
   DB_STRING: "postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=$DB_SSLMODE"
   PRE_BIN: "devbox run"
-  
+
 
 tasks:
   setup:
@@ -84,7 +84,7 @@ tasks:
   migrate:check:
     cmds:
       - "{{.PRE_BIN}} goose -v validate"
-  
+
   container:up:
     cmds:
       - docker compose -f docker/docker-compose.yml  up -d
@@ -99,7 +99,7 @@ tasks:
       FEATURE_PATH: "./internal/features/{{.CLI_ARGS}}"
     cmds:
       - mkdir -p $FEATURE_PATH
-      - touch $FEATURE_PATH/usecase.go 
+      - touch $FEATURE_PATH/usecase.go
       - touch $FEATURE_PATH/request.go
-      - touch $FEATURE_PATH/response.go 
+      - touch $FEATURE_PATH/response.go
       - touch $FEATURE_PATH/handler.go

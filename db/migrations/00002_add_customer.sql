@@ -1,3 +1,4 @@
+-- +goose Up
 CREATE TABLE customers(
     id SERIAL PRIMARY KEY,
     public_id UUID NOT NULL,
@@ -12,3 +13,8 @@ CREATE TABLE customers(
 
 CREATE INDEX idx_customers_email ON customers (email);
 CREATE INDEX idx_customers_deleted_at ON customers (deleted_at);
+
+-- +goose Down
+DROP TABLE IF EXISTS customers;
+DROP INDEX IF EXISTS idx_customers_deleted_at;
+DROP INDEX IF EXISTS idx_customers_email;

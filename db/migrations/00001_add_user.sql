@@ -1,3 +1,4 @@
+-- +goose Up
 CREATE TYPE user_role AS ENUM ('customer', 'admin');
 
 CREATE TABLE users(
@@ -15,3 +16,9 @@ CREATE TABLE users(
 CREATE INDEX idx_users_email ON users (email);
 
 CREATE INDEX idx_users_deleted_at ON users (deleted_at);
+
+-- +goose Down
+DROP TABLE IF EXISTS users;
+DROP TYPE IF EXISTS user_role;
+DROP INDEX IF EXISTS idx_users_deleted_at;
+DROP INDEX IF EXISTS idx_users_email;
