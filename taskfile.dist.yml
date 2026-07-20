@@ -11,6 +11,7 @@ dotenv:
 vars:
   DB_STRING: "postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=$DB_SSLMODE"
   PRE_BIN: "devbox run"
+  
 
 tasks:
   setup:
@@ -67,19 +68,23 @@ tasks:
       create migration set with name passed as param
       task migrate-gen -- <name>
     cmds:
-      - "{{.PRE_BIN}} migrate create -ext sql -dir db/migrations {{.CLI_ARGS}}"
-
+      - "{{.PRE_BIN}} goose -s create {{.CLI_ARGS}} sql"
   migrate:up:
     cmds:
-      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} up {{.CLI_ARGS}}"
-
+      - "{{.PRE_BIN}} goose -v up"
   migrate:down:
     cmds:
-      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} down {{.CLI_ARGS}}"
-  migrate:version:set:
+      - "{{.PRE_BIN}} goose -v down"
+  migrate:status:
     cmds:
-      - "{{.PRE_BIN}} migrate -path db/migrations -database {{.DB_STRING}} force {{.CLI_ARGS}}"
-
+      - "{{.PRE_BIN}} goose status"
+  migrate:redo:
+    cmds:
+      - "{{.PRE_BIN}} goose -v redo"
+  migrate:check:
+    cmds:
+      - "{{.PRE_BIN}} goose -v validate"
+  
   container:up:
     cmds:
       - docker compose -f docker/docker-compose.yml  up -d
@@ -91,9 +96,10 @@ tasks:
   add-feature:
     desc: Add a new feature template (write your feature name after "-- ")
     env:
-      FEATURE_PATH: "${pwd}/internal/featuress/{{.CLI_ARGS}}"
+      FEATURE_PATH: "./internal/features/{{.CLI_ARGS}}"
     cmds:
       - mkdir -p $FEATURE_PATH
-      - |
-       touch $FEATURE_PATH/usecase.go $FEATURE_PATH/request.go
-       $FEATURE_PATH/response.go $FEATURE_PATH/handler.go
+      - touch $FEATURE_PATH/usecase.go 
+      - touch $FEATURE_PATH/request.go
+      - touch $FEATURE_PATH/response.go 
+      - touch $FEATURE_PATH/handler.go

@@ -149,6 +149,54 @@
         }
       }
     },
+    "goose@latest": {
+      "last_modified": "2026-07-08T21:13:06Z",
+      "resolved": "github:NixOS/nixpkgs/389ed85304b281ca7f306cf8a1eb4378651ca44e#goose",
+      "source": "devbox-search",
+      "version": "3.27.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c12a6xqaksif6h20c3jrm3zh1xgr0agn-goose-3.27.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/c12a6xqaksif6h20c3jrm3zh1xgr0agn-goose-3.27.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/f4b0928si0ai46ldqwxccypw9cy5kil1-goose-3.27.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/f4b0928si0ai46ldqwxccypw9cy5kil1-goose-3.27.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8ijxfsip2m8h974a18ipzjkdx6lsa685-goose-3.27.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8ijxfsip2m8h974a18ipzjkdx6lsa685-goose-3.27.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bcycjnam0s28m00ahr5pajsc9gkkxfgv-goose-3.27.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/bcycjnam0s28m00ahr5pajsc9gkkxfgv-goose-3.27.2"
+        }
+      }
+    },
     "gotools@latest": {
       "last_modified": "2026-06-27T07:37:20Z",
       "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#gotools",

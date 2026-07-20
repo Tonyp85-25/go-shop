@@ -6,7 +6,8 @@
     "gotools@latest",
     "lefthook@latest",
     "commitlint@latest",
-    "yamllint@latest"
+    "yamllint@latest",
+    "goose@latest"
   ],
   "env": {
     "GOPATH": "$HOME/go",
