@@ -36,13 +36,13 @@ func (s *TestSuite) SetupSuite() {
 }
 
 func (s *TestSuite) SetupTest() {
-	err := s.Db.AutoMigrate(&auth.User{}, &ecommerce.Customer{})
+	err := s.Db.AutoMigrate(&auth.User{}, &ecommerce.Customer{}, &auth.RefreshToken{})
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 func (s *TestSuite) TearDownTest() {
-	err := s.Db.Migrator().DropTable(&auth.User{}, &ecommerce.Customer{})
+	err := s.Db.Migrator().DropTable(&auth.User{}, &ecommerce.Customer{}, &auth.RefreshToken{})
 	if err != nil {
 		log.Fatalf("error during test cleanup : %s", err)
 	}

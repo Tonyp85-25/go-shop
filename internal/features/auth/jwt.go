@@ -11,19 +11,17 @@ import (
 // Claims contains the data for the user
 type Claims struct {
 	UserID string `json:"user_id"`
-	Email  string `json:"email"`
 	Role   string `json:"role"`
 	jwt.RegisteredClaims
 }
 
 // GenerateTokenPair generates access and refresh token
-func GenerateTokenPair(cfg *config.JWTConfig, userID, email, role string) (accessToken, refreshToken string, err error) {
-
+func GenerateTokenPair(cfg *config.JWTConfig, userID string, role UserRole) (accessToken, refreshToken string, err error) {
+	roleStr := string(role)
 	// Access token
 	accessClaims := &Claims{
 		UserID: userID,
-		Email:  email,
-		Role:   role,
+		Role:   roleStr,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(cfg.ExpiresIn)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
@@ -39,8 +37,7 @@ func GenerateTokenPair(cfg *config.JWTConfig, userID, email, role string) (acces
 	// Refresh token
 	refreshClaims := &Claims{
 		UserID: userID,
-		Email:  email,
-		Role:   role,
+		Role:   roleStr,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(cfg.RefreshTokenExpires)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),

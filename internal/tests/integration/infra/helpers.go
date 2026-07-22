@@ -14,7 +14,7 @@ func CreateRequestWithBody[T interface{}](t *testing.T, request *T, method, url 
 	w := httptest.NewRecorder()
 	data, err := json.Marshal(*request)
 	assert.NoError(t, err)
-	req, err := http.NewRequest(method, "/api/v1/register", bytes.NewBuffer(data))
+	req, err := http.NewRequest(method, url, bytes.NewBuffer(data))
 	assert.NoError(t, err)
 	return req, w
 
