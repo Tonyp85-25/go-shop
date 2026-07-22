@@ -17,7 +17,7 @@ type User struct {
 	Role     UserRole `gorm:"default:customer"`
 
 	// Relatiosnhip
-	RefreshTokens []RefreshToken
+	// RefreshTokens []RefreshToken
 }
 
 type UserRole string
@@ -29,12 +29,11 @@ const (
 
 type RefreshToken struct {
 	ID        uint      `gorm:"primary_key"`
-	UserID    uint      `gorm:"not null"`
+	UserID    string    `gorm:"not null"`
 	Token     string    `gorm:"uniqueIndex;not null"`
 	ExpiresAt time.Time `gorm:"not null"`
 	CreatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
-	User      User
 }
 
 // Creates a user with customer role

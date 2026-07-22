@@ -10,6 +10,16 @@ type StubUserRepo struct {
 	Data []auth.User
 }
 
+// FindActive implements [auth.UserRepository].
+func (s *StubUserRepo) FindActive(email string) (*auth.User, error) {
+	panic("unimplemented")
+}
+
+// FindActiveUser implements [auth.UserRepository].
+func (s *StubUserRepo) FindActiveUser(email string) (*auth.User, error) {
+	panic("unimplemented")
+}
+
 func NewStubUserRepository() *StubUserRepo {
 	return &StubUserRepo{}
 }

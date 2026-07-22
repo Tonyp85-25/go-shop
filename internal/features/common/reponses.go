@@ -6,15 +6,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Response struct {
-	Success bool        `json:"success"`
-	Message string      `json:"message"`
-	Data    interface{} `json:"data"`
-	Error   string      `json:"error"`
+type Response[T interface{}] struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+	Data    T      `json:"data,omitempty"`
+	Error   string `json:"error"`
 }
 
-type PaginatedResponse struct {
-	Response
+type PaginatedResponse[T interface{}] struct {
+	Response[T]
 	Meta PaginationMeta `json:"meta"`
 }
 
@@ -25,16 +25,16 @@ type PaginationMeta struct {
 	TotalPages int   `json:"total_pages"`
 }
 
-func SuccessResponse(c *gin.Context, message string, data interface{}) {
-	c.JSON(http.StatusOK, Response{
+func SuccessResponse[T interface{}](c *gin.Context, message string, data T) {
+	c.JSON(http.StatusOK, Response[T]{
 		Success: true,
 		Message: message,
 		Data:    data,
 	})
 }
 
-func CreatedResponse(c *gin.Context, message string, data interface{}) {
-	c.JSON(http.StatusCreated, Response{
+func CreatedResponse[T interface{}](c *gin.Context, message string, data T) {
+	c.JSON(http.StatusCreated, Response[T]{
 		Success: true,
 		Message: message,
 		Data:    data,
@@ -42,7 +42,7 @@ func CreatedResponse(c *gin.Context, message string, data interface{}) {
 }
 
 func ErrorResponse(c *gin.Context, statusCode int, message string, err error) {
-	response := Response{
+	response := Response[string]{
 		Success: false,
 		Message: message,
 	}
@@ -74,9 +74,9 @@ func InternalServerErrorResponse(c *gin.Context, message string, err error) {
 	ErrorResponse(c, http.StatusInternalServerError, message, err)
 }
 
-func PaginatedSuccessResponse(c *gin.Context, message string, data interface{}, meta PaginationMeta) {
-	c.JSON(http.StatusOK, PaginatedResponse{
-		Response: Response{
+func PaginatedSuccessResponse[T interface{}](c *gin.Context, message string, data T, meta PaginationMeta) {
+	c.JSON(http.StatusOK, PaginatedResponse[T]{
+		Response: Response[T]{
 			Success: true,
 			Message: message,
 			Data:    data,

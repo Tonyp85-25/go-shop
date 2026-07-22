@@ -14,17 +14,24 @@ vars:
 
 
 tasks:
-  setup:
+  setup:all:
     desc: Setup project
     deps:
-      - gen-local
       - devbox install  #install dev dependency
-      - "{{.PRE_BIN} lefthook install" # install git hooks
-
-  gen-local:
-    desc: Generate local task file (not commited)
+      - setup:env
+      - setup:tasks
+      - setup:hooks # install git hooks
+  setup:hooks:
+    desc: Install git hooks
+    cmds:
+      - "{{.PRE_BIN}} lefthook install"
+  setup:tasks:
+    desc: copy taskfile
     cmds:
       - cp ./taskfile.dist.yml ./Taskfile.yml
+  setup:env:
+    desc: copy env file
+    cmds:
       - cp .env-example .env
 
   build:

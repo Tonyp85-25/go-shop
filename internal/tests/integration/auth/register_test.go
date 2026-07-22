@@ -14,11 +14,11 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type AuthTestSuite struct {
+type RegisterSuite struct {
 	infra.TestSuite
 }
 
-func (s *AuthTestSuite) TestRegisterHappyPath() {
+func (s *RegisterSuite) TestRegisterHappyPath() {
 	t := s.T()
 
 	clientReq := register.Request{
@@ -31,15 +31,19 @@ func (s *AuthTestSuite) TestRegisterHappyPath() {
 	req, w := infra.CreateRequestWithBody(t, &clientReq, "POST", "/api/v1/register")
 	s.Router.ServeHTTP(w, req)
 
-	var response = common.Response{}
+	var response = common.Response[register.Response]{}
 	infra.ExtractResponse(t, w, &response)
 	assert.Equal(t, http.StatusCreated, w.Code)
 
 	var user auth.User
-	s.Db.Where("email = ?", clientReq.Email).First(&user)
+	err := s.Db.Where("email = ?", clientReq.Email).First(&user).Error
+
+	assert.NoError(t, err)
 
 	var customer ecommerce.Customer
-	s.Db.Where("email = ?", clientReq.Email).First(&customer)
+	err = s.Db.Where("email = ?", clientReq.Email).First(&customer).Error
+
+	assert.NoError(t, err)
 
 	assert.Equal(t, "User registered", response.Message)
 	assert.Equal(t, clientReq.Email, user.Email)
@@ -50,7 +54,7 @@ func (s *AuthTestSuite) TestRegisterHappyPath() {
 
 }
 
-func (s *AuthTestSuite) TestRegisterWithBadRequest() {
+func (s *RegisterSuite) TestRegisterWithBadRequest() {
 	t := s.T()
 
 	clientReq := register.Request{
@@ -63,7 +67,7 @@ func (s *AuthTestSuite) TestRegisterWithBadRequest() {
 	req, w := infra.CreateRequestWithBody(t, &clientReq, "POST", "/api/v1/register")
 	s.Router.ServeHTTP(w, req)
 
-	var response common.Response
+	var response common.Response[register.Response]
 	infra.ExtractResponse(t, w, &response)
 
 	assert.Equal(t, http.StatusBadRequest, w.Code)
@@ -72,5 +76,5 @@ func (s *AuthTestSuite) TestRegisterWithBadRequest() {
 
 func TestRegisterSuite(t *testing.T) {
 
-	suite.Run(t, new(AuthTestSuite))
+	suite.Run(t, new(RegisterSuite))
 }
